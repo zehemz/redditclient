@@ -49,12 +49,12 @@ class RedditServiceTest {
         enqueueResponse("top.json")
         val redditListing = (getValue(service.getTop()) as ApiSuccessResponse).body
         val request = mockWebServer.takeRequest()
-        assertThat(request.path, `is`("/top/.json"))
+        assertThat(request.path, `is`("/top/.json?limit=50"))
 
         assertThat<RedditListing>(redditListing, notNullValue())
         assertThat(redditListing.data, notNullValue())
         assertThat(redditListing.data.children, notNullValue())
-        assertThat(redditListing.data.children.size, `is`(25))
+        assertThat(redditListing.data.children.size, `is`(50))
     }
 
     private fun enqueueResponse(fileName: String, headers: Map<String, String> = emptyMap()) {

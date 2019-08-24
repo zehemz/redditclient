@@ -9,7 +9,7 @@ import retrofit2.http.GET
  */
 interface RedditService {
 
-    @GET("top/.json")
+    @GET("top/.json?limit=50")
     fun getTop(): LiveData<ApiResponse<RedditListing>>
 
 }
