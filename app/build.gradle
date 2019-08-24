@@ -61,18 +61,45 @@ dependencies {
     implementation deps.retrofit.runtime
     implementation deps.retrofit.gson
 
+    // Database dependencies
+    implementation deps.room.runtime
+
     // annotation processors
     kapt deps.dagger.android_support_compiler
     kapt deps.dagger.compiler
     kapt deps.room.compiler
 
-    // other template dependencies //TODO remove.
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // Kotlin support STD.
+    implementation deps.kotlin.stdlib
+
+    // template dependencies
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // Unit test dependencies
+    testImplementation deps.junit
+    testImplementation deps.mock_web_server
+    testImplementation deps.arch_core.testing
+    testImplementation deps.mockito.core
+
+    // Core android tests
+    androidTestImplementation deps.espresso.core
+    androidTestImplementation deps.espresso.contrib
+
+    androidTestImplementation deps.atsl.core
+    androidTestImplementation deps.atsl.runner
+    androidTestImplementation deps.atsl.rules
+
+    // Support lib android test
+    androidTestImplementation deps.support.app_compat
+    androidTestImplementation deps.support.recyclerview
+    androidTestImplementation deps.support.cardview
+    androidTestImplementation deps.support.design
+
+    // Extra android tests
+    androidTestImplementation deps.arch_core.testing
+    androidTestImplementation deps.mockito.core
+    androidTestImplementation deps.mockito.android
 }
 
 jacoco {

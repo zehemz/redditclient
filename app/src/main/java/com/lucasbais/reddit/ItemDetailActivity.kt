@@ -2,8 +2,8 @@ package com.lucasbais.reddit
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_item_detail.*
 
 /**
