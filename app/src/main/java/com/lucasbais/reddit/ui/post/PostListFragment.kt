@@ -1,17 +1,23 @@
 package com.lucasbais.reddit.ui.post
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.request.RequestOptions
 import com.lucasbais.reddit.R
 import com.lucasbais.reddit.di.Injectable
 import com.lucasbais.reddit.vo.RedditPost
@@ -89,17 +95,25 @@ class PostListFragment : Fragment(), Injectable {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            val item = values[position]
-            holder.idView.text = item.title
-            holder.contentView.text = item.author
+            val post = values[position]
+            holder.idView.text = post.title
+            holder.contentView.text = post.author
+            holder.comments.text = resources.getString(R.string.amount_of_comments,post.num_comments)
+
+
+            Glide.with(this@PostListFragment)
+                .load(post.thumbnail)
+                .apply(holder.requestOptions)
+                .into(holder.imageThumb)
 
             with(holder.itemView) {
-                tag = item
+                tag = post
                 setOnClickListener(onClickListener)
             }
         }
 
         override fun getItemCount() = values.size
+
         fun setData(data: List<RedditPost>) {
             values = data
         }
@@ -107,6 +121,14 @@ class PostListFragment : Fragment(), Injectable {
         inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val idView: TextView = view.id_text
             val contentView: TextView = view.content
+            val imageThumb: AppCompatImageView = view.image_thumb
+            val comments: TextView = view.comments
+
+            val requestOptions: RequestOptions by lazy {
+                RequestOptions()
+                    .placeholder(ColorDrawable(Color.LTGRAY))
+                    .transforms(CenterCrop())
+            }
         }
     }
 

@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.lucasbais.reddit.R
 import com.lucasbais.reddit.di.Injectable
 import kotlinx.android.synthetic.main.item_detail_content.*
@@ -39,7 +41,11 @@ class PostDetailFragment : Fragment(), Injectable {
             if (it.containsKey(ARG_POST_ID)) {
                 it.getString(ARG_POST_ID)?.let { idValue ->
                     viewModel.detail(idValue).observe(this, Observer {
-                        item_detail.text = it.title
+                        title.text = it.title
+                        author.text = it.author
+                        Glide.with(this@PostDetailFragment)
+                            .load(it.thumbnail).apply(RequestOptions().fitCenter())
+                            .into(image)
                     })
                 }
             }

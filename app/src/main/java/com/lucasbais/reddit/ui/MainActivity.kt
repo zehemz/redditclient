@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector,
     private fun showDetailFragment(post: RedditPost) {
         supportFragmentManager.apply {
             beginTransaction()
+                .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
                 .replace(R.id.container, PostDetailFragment().apply {
                     arguments = Bundle().apply {
                         putString(PostDetailFragment.ARG_POST_ID, post.id)

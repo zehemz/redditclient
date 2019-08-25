@@ -49,6 +49,8 @@ dependencies {
     implementation deps.support.cardview
     implementation deps.support.design
     implementation deps.navigation.fragment_ktx
+    implementation deps.glide.runtime
+
     // KT extensions
     implementation deps.support.core_ktx
 
@@ -69,6 +71,7 @@ dependencies {
     kapt deps.dagger.android_support_compiler
     kapt deps.dagger.compiler
     kapt deps.room.compiler
+    kapt deps.glide.compiler
 
     // Kotlin support STD.
     implementation deps.kotlin.stdlib

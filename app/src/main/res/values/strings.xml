@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Reddit Client</string>
     <string name="title_item_detail">Post Detail</string>
+    <string name="amount_of_comments"> %d comments</string>
 </resources>
