@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">reddit</string>
-    <string name="title_item_detail">Item Detail</string>
+    <string name="app_name">Reddit Client</string>
+    <string name="title_item_detail">Post Detail</string>
 </resources>

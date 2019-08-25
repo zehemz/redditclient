@@ -9,6 +9,7 @@
 - DI with dagger2.
 - Retrofit 2 for network requests.
 - Additionally added database persistence with Room.
+- Single activity navigation.
 
 ### Detailed time line
 - Create template from android studio. (0 min)
@@ -17,3 +18,4 @@
 - added gradle script to allow easy import of most used libraries, added basic DI, network and support libs. (15 min)
 - TDD approach, prepare base application injection tree, db model, viewmodel, executors and net config. (1:30 hr)
 - No pagination but limit 50 reddit posts (3 to 5 minutes)
+- Rename of files, added right navigation and fragment states, added viewmodel for reddit posts (1:30 hr)

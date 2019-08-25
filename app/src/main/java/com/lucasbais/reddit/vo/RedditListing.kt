@@ -5,5 +5,7 @@ package com.lucasbais.reddit.vo
  */
 data class RedditListing(val data: Data) {
 
-    data class Data(val children: List<RedditPost>)
+    data class Data(val children: List<RedditPostData>)
+
+    data class RedditPostData(val data: RedditPost)
 }

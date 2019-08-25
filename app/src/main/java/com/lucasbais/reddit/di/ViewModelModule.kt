@@ -2,7 +2,7 @@ package com.lucasbais.reddit.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.lucasbais.reddit.viewmodel.RedditPostViewModel
+import com.lucasbais.reddit.ui.post.RedditPostViewModel
 import com.lucasbais.reddit.viewmodel.ViewModelFactory
 
 

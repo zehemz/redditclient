@@ -48,6 +48,7 @@ dependencies {
     implementation deps.support.recyclerview
     implementation deps.support.cardview
     implementation deps.support.design
+    implementation deps.navigation.fragment_ktx
     // KT extensions
     implementation deps.support.core_ktx
 
