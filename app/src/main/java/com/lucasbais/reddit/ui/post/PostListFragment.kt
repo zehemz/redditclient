@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
@@ -30,6 +31,8 @@ import javax.inject.Inject
  * This fragment holds the item lists.
  */
 class PostListFragment : Fragment(), Injectable {
+
+    private lateinit var adapter: SimpleItemRecyclerViewAdapter
 
     interface OnPostListener {
         fun onClick(post: RedditPost)
@@ -55,13 +58,23 @@ class PostListFragment : Fragment(), Injectable {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = SimpleItemRecyclerViewAdapter(emptyList())
+
+        adapter = SimpleItemRecyclerViewAdapter(emptyList())
         item_list?.adapter = adapter
+        bindData()
+
+        dismiss.setOnClickListener {
+            viewModel.dismissAll()
+        }
+    }
+
+    private fun bindData() {
         viewModel.posts.observe(this, Observer { result ->
             when (result.status) {
                 Status.SUCCESS -> adapter.apply {
-                    setData(result.data!!)
-                    notifyDataSetChanged()
+                    result.data?.let {
+                        setData(it)
+                    }
                 }
                 Status.LOADING -> Log.i("LOADING", "getting posts")
                 else -> Log.e("ERROR", "getting posts")
@@ -98,13 +111,18 @@ class PostListFragment : Fragment(), Injectable {
             val post = values[position]
             holder.idView.text = post.title
             holder.contentView.text = post.author
-            holder.comments.text = resources.getString(R.string.amount_of_comments,post.num_comments)
+            holder.comments.text =
+                resources.getString(R.string.amount_of_comments, post.num_comments)
 
 
             Glide.with(this@PostListFragment)
                 .load(post.thumbnail)
                 .apply(holder.requestOptions)
                 .into(holder.imageThumb)
+
+            holder.dismiss.setOnClickListener {
+                viewModel.dismiss(post.id)
+            }
 
             with(holder.itemView) {
                 tag = post
@@ -116,6 +134,7 @@ class PostListFragment : Fragment(), Injectable {
 
         fun setData(data: List<RedditPost>) {
             values = data
+            notifyDataSetChanged()
         }
 
         inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -123,6 +142,7 @@ class PostListFragment : Fragment(), Injectable {
             val contentView: TextView = view.content
             val imageThumb: AppCompatImageView = view.image_thumb
             val comments: TextView = view.comments
+            val dismiss: Button = view.dismiss_post
 
             val requestOptions: RequestOptions by lazy {
                 RequestOptions()

@@ -5,6 +5,7 @@
     <dimen name="item_width">300dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="medium_margin">16dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
     <dimen name="image_thumb_size">65dp</dimen>
     <dimen name="image_big_size">200dp</dimen>
 </resources>

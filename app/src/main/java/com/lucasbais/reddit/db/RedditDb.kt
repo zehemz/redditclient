@@ -28,4 +28,10 @@ interface PostDao {
 
     @Query("SELECT * FROM redditpost")
     fun getAll(): LiveData<List<RedditPost>>
+
+    @Query("DELETE FROM redditpost")
+    fun deleteAll()
+
+    @Query("DELETE FROM redditpost WHERE id=:postId")
+    fun delete(postId: String)
 }

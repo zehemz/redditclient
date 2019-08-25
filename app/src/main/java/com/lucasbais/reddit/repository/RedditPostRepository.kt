@@ -49,4 +49,16 @@ class RedditPostRepository @Inject constructor(
     fun getPost(postId: String): LiveData<RedditPost> {
         return postDao.load(postId)
     }
+
+    fun deleteAll() {
+        appExecutors.diskIO().execute {
+            postDao.deleteAll()
+        }
+    }
+
+    fun delete(postId: String) {
+        appExecutors.diskIO().execute {
+            postDao.delete(postId)
+        }
+    }
 }

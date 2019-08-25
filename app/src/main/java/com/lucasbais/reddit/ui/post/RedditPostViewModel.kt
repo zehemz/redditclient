@@ -14,4 +14,12 @@ class RedditPostViewModel @Inject constructor(private val repository: RedditPost
     fun detail(postId: String): LiveData<RedditPost> {
         return repository.getPost(postId)
     }
+
+    fun dismissAll() {
+        repository.deleteAll()
+    }
+
+    fun dismiss(postId: String) {
+        repository.delete(postId)
+    }
 }

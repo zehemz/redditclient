@@ -37,15 +37,21 @@ class PostDetailFragment : Fragment(), Injectable {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        bindDetail()
+    }
+
+    private fun bindDetail() {
         arguments?.let {
             if (it.containsKey(ARG_POST_ID)) {
                 it.getString(ARG_POST_ID)?.let { idValue ->
                     viewModel.detail(idValue).observe(this, Observer {
-                        title.text = it.title
-                        author.text = it.author
-                        Glide.with(this@PostDetailFragment)
-                            .load(it.thumbnail).apply(RequestOptions().fitCenter())
-                            .into(image)
+                        it?.let {
+                            title.text = it.title
+                            author.text = it.author
+                            Glide.with(this@PostDetailFragment)
+                                .load(it.thumbnail).apply(RequestOptions().fitCenter())
+                                .into(image)
+                        }
                     })
                 }
             }

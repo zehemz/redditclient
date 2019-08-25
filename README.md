@@ -48,6 +48,7 @@
 - No pagination but limit 50 reddit posts (5 minutes)
 - Rename of files, added right navigation and fragment states, added viewmodel for reddit posts (1:30 hr)
 - Added Glide for image cache and presentation from url. Some style modifications and enter/exit transition (15 min)
+- Added dismiss buttons. (25 min, exceeded 10). 
 
 ### Non required additional features to add
 - [ ] Error handling messages
@@ -56,4 +57,3 @@
 - [ ] Full lint report (CI)
 - [ ] CD
 - [ ] README badges :octocat:
-
